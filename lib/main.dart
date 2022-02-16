@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './transaction.dart';
+import 'package:intl/intl.dart';
 
 void main() => runApp(MyApp());
 
@@ -64,7 +65,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        txn.amount.toString(),
+                        '₹ ${txn.amount}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
@@ -83,7 +84,7 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          txn.date.toString(),
+                          DateFormat.yMMMd().format(txn.date),
                           style: TextStyle(
                             color: Colors.grey[700],
                           ),
