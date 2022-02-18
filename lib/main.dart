@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import './widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
 import './widgets/transaction_list.dart';
@@ -13,7 +11,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App',
+      title: 'Expense Tracker',
+      theme: ThemeData(
+          primarySwatch: Colors.purple,
+          accentColor: Colors.amber,
+          fontFamily: 'OpenSans',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20,
+                  ),
+                ),
+          )),
       home: MyHomePage(),
     );
   }
@@ -70,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text('Expense Tracker'),
       ),
       body: SingleChildScrollView(
         child: Column(
