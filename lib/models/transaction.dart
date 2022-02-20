@@ -1,6 +1,6 @@
 class Transaction {
   final String id, title;
-  final int amount;
+  final double amount;
   final DateTime date;
 
   Transaction({

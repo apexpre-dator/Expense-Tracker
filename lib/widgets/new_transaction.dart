@@ -11,14 +11,13 @@ class NewTransaction extends StatefulWidget {
 
 class _NewTransactionState extends State<NewTransaction> {
   final itemInput = TextEditingController();
-
   final amountInput = TextEditingController();
 
   void submitData() {
     final enteredItem = itemInput.text;
-    final enteredAmount = int.parse(amountInput.text);
+    final enteredAmount = double.parse(amountInput.text);
 
-    if(enteredItem.isEmpty || enteredAmount <= 0) {
+    if(enteredItem.isEmpty || enteredAmount <= 0.0) {
       return ;
     }
 
