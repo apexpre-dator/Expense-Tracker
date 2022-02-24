@@ -16,17 +16,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.purple,
           accentColor: Colors.amber,
+          errorColor: Colors.red,
           fontFamily: 'OpenSans',
           textTheme: ThemeData.light().textTheme.copyWith(
-                headline6: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.w700,
-                  fontSize: 18,
-                ),
-                button: TextStyle(
-                  color: Colors.white,
-                )
+              headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.w700,
+                fontSize: 18,
               ),
+              button: TextStyle(
+                color: Colors.white,
+              )),
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.light().textTheme.copyWith(
                   headline6: TextStyle(
@@ -59,10 +59,10 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void addTransaction(String title,double amount) {
+  void addTransaction(String title, double amount, DateTime chosenDate) {
     final newTxn = Transaction(
       id: DateTime.now().toString(),
-      date: DateTime.now(),
+      date: chosenDate,
       title: title,
       amount: amount,
     );
@@ -85,6 +85,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
+  void deleteTransaction(String id) {
+    setState(() {
+      userTransactions.removeWhere((tx) => tx.id == id);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: <Widget>[
             Chart(recentTransactions),
-            TransactionList(userTransactions),
+            TransactionList(userTransactions, deleteTransaction),
           ],
         ),
       ),

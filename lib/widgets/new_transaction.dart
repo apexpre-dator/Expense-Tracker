@@ -17,16 +17,19 @@ class _NewTransactionState extends State<NewTransaction> {
   int f = 0;
 
   void submitData() {
+    if (amountInput.text.isEmpty) {
+      return;
+    }
     final enteredItem = itemInput.text;
     final enteredAmount = double.parse(amountInput.text);
-
-    if (enteredItem.isEmpty || enteredAmount <= 0.0) {
+    if (enteredItem.isEmpty || enteredAmount <= 0.0 || f == 0) {
       return;
     }
 
     widget.addTxn(
       enteredItem,
       enteredAmount,
+      selectedDate,
     );
 
     Navigator.of(context).pop();
