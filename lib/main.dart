@@ -93,15 +93,28 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final appbar = AppBar(
+      title: Text('Expense Tracker'),
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Expense Tracker'),
-      ),
+      appBar: appbar,
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Chart(recentTransactions),
-            TransactionList(userTransactions, deleteTransaction),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appbar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.25,
+              child: Chart(recentTransactions),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      appbar.preferredSize.height -
+                      MediaQuery.of(context).padding.top) *
+                  0.75,
+              child: TransactionList(userTransactions, deleteTransaction),
+            ),
           ],
         ),
       ),
